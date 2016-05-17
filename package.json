@@ -1,0 +1,21 @@
+{
+  "name": "simple-perf",
+  "version": "0.0.0",
+  "description": "Simplified JavaScript performance benchmarking",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-/simple-perf.git"
+  },
+  "keywords": [
+    "simple",
+    "performance",
+    "jsperf",
+    "benchmark"
+  ],
+  "author": "Jamie Hoeks <j@skeoh.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/j-/simple-perf/issues"
+  },
+  "homepage": "https://github.com/j-/simple-perf#readme"
+}
