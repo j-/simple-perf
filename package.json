@@ -2,6 +2,7 @@
   "name": "simple-perf",
   "version": "0.0.0",
   "description": "Simplified JavaScript performance benchmarking",
+  "main": "dist/index.html",
   "scripts": {
     "build": "webpack",
     "build:watch": "webpack --watch",
