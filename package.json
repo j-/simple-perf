@@ -66,5 +66,8 @@
       "stage-2",
       "react"
     ]
+  },
+  "engines": {
+    "node": ">= 4"
   }
 }
