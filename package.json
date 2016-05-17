@@ -52,10 +52,18 @@
     "webpack": "^1.13.0"
   },
   "ava": {
-    "require": ["babel-register"]
+    "require": [
+      "babel-register"
+    ]
   },
   "babel": {
-    "plugins": ["transform-runtime"],
-    "presets": ["es2015", "stage-2", "react"]
+    "plugins": [
+      "transform-runtime"
+    ],
+    "presets": [
+      "es2015",
+      "stage-2",
+      "react"
+    ]
   }
 }
