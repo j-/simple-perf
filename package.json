@@ -2,6 +2,12 @@
   "name": "simple-perf",
   "version": "0.0.0",
   "description": "Simplified JavaScript performance benchmarking",
+  "scripts": {
+    "build": "webpack",
+    "build:watch": "webpack --watch",
+    "test": "ava",
+    "test:watch": "ava --watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/j-/simple-perf.git"
