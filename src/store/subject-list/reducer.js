@@ -3,10 +3,21 @@ import * as types from './types';
 const UP = -1;
 const DOWN = 1;
 
+/**
+ * Swap array items at two given indexes.
+ * @param {Array} arr Array to mutate
+ * @param {Number} i Index of first item
+ * @param {Number} j Index of second item
+ */
 function swap (arr, i, j) {
 	[arr[i], arr[j]] = [arr[j], arr[i]];
 }
 
+/**
+ * Swaps the item at a given index with the item before it.
+ * @param {Array} arr Array to mutate
+ * @param {Number} i Index of item to move up
+ */
 function moveUp (arr, i) {
 	if (i <= 0) {
 		return;
@@ -14,8 +25,15 @@ function moveUp (arr, i) {
 	swap(arr, i - 1, i);
 }
 
+/**
+ * Swaps the item at a given index with the item after it.
+ * @param {Array} arr Array to mutate
+ * @param {Number} i Index of item to move down
+ */
 function moveDown (arr, i) {
 	if (i >= arr.length - 1) {
+		return;
+	} else if (i <= -1) {
 		return;
 	}
 	swap(arr, i, i + 1);
@@ -43,18 +61,14 @@ export default function (state = [], action = {}) {
 				return item.id === action.item.id;
 			});
 			list = [...state];
-			if (itemIndex > -1) {
-				moveUp(list, itemIndex);
-			}
+			moveUp(list, itemIndex);
 			return list;
 		case types.MOVE_ITEM_DOWN:
 			itemIndex = state.findIndex((item, i) => {
 				return item.id === action.item.id;
 			});
 			list = [...state];
-			if (itemIndex > -1) {
-				moveDown(list, itemIndex);
-			}
+			moveDown(list, itemIndex);
 			return list;
 		default:
 			return state;
