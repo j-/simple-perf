@@ -4,6 +4,6 @@ export default class SubjectListItem extends React.Component {
 	render () {
 		const { item } = this.props;
 		const { id } = item;
-		return <div>{ id }</div>;
+		return <div className="subject-list-item">{ id }</div>;
 	}
 }

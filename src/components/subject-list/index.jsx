@@ -9,6 +9,6 @@ export default class SubjectList extends React.Component {
 				<Item item={ item } />
 			</SubjectListItem>;
 		});
-		return <div>{ items }</div>;
+		return <div className="subject-list">{ items }</div>;
 	}
 }
