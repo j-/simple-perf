@@ -1,5 +1,14 @@
-import * as listTypes from './types';
-import * as itemTypes from '../subject/types';
+import {
+	PREPEND_ITEM,
+	APPEND_ITEM,
+	REMOVE_ITEM,
+	MOVE_ITEM_UP,
+	MOVE_ITEM_DOWN,
+} from './types';
+import {
+	SET_STATUS,
+	UPDATE_SOURCE,
+} from '../subject/types';
 import itemReducer from '../subject/reducer';
 
 const UP = -1;
@@ -57,30 +66,30 @@ export default function (state = [], action = {}) {
 	const { item } = action;
 	let list;
 	switch (action.type) {
-		case listTypes.PREPEND_ITEM:
+		case PREPEND_ITEM:
 			return [
 				item,
 				...state,
 			];
-		case listTypes.APPEND_ITEM:
+		case APPEND_ITEM:
 			return [
 				...state,
 				item,
 			];
-		case listTypes.REMOVE_ITEM:
+		case REMOVE_ITEM:
 			return state.filter(({ id }) => {
 				return id !== item.id;
 			});
-		case listTypes.MOVE_ITEM_UP:
+		case MOVE_ITEM_UP:
 			list = [...state];
 			moveUp(list, findIndex(list, item));
 			return list;
-		case listTypes.MOVE_ITEM_DOWN:
+		case MOVE_ITEM_DOWN:
 			list = [...state];
 			moveDown(list, findIndex(list, item));
 			return list;
-		case itemTypes.SET_STATUS:
-		case itemTypes.UPDATE_SOURCE:
+		case SET_STATUS:
+		case UPDATE_SOURCE:
 			return state.map((item) => {
 				if (item.id !== action.id) {
 					return item;

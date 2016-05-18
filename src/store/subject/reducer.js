@@ -1,17 +1,20 @@
-import * as types from './types';
+import {
+	SET_STATUS,
+	UPDATE_SOURCE,
+} from './types';
 
 export default function (state = {}, action = {}) {
 	if (action.id !== state.id) {
 		return state;
 	}
 	switch (action.type) {
-		case types.SET_STATUS:
+		case SET_STATUS:
 			return {
 				...state,
 				id: action.id,
 				status: action.status,
 			};
-		case types.UPDATE_SOURCE:
+		case UPDATE_SOURCE:
 			return {
 				...state,
 				id: action.id,

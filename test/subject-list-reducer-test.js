@@ -1,6 +1,12 @@
 import test from 'ava';
 import reducer from '../src/store/subject-list/reducer';
-import * as actions from '../src/store/subject-list/actions';
+import {
+	prependItem,
+	appendItem,
+	removeItem,
+	moveItemUp,
+	moveItemDown,
+} from '../src/store/subject-list/actions';
 
 test('Returns an empty list as default state', (t) => {
 	const result = reducer();
@@ -12,7 +18,7 @@ test('Can prepend items to a list', (t) => {
 	const list = [
 		{ id: 'b' },
 	];
-	const actual = reducer(list, actions.prependItem({ id: 'a' }));
+	const actual = reducer(list, prependItem({ id: 'a' }));
 	const expected = [
 		{ id: 'a' },
 		{ id: 'b' },
@@ -25,7 +31,7 @@ test('Can append items to a list', (t) => {
 	const list = [
 		{ id: 'a' },
 	];
-	const actual = reducer(list, actions.appendItem({ id: 'b' }));
+	const actual = reducer(list, appendItem({ id: 'b' }));
 	const expected = [
 		{ id: 'a' },
 		{ id: 'b' },
@@ -39,7 +45,7 @@ test('Can remove items from a list', (t) => {
 		{ id: 'a' },
 		{ id: 'b' },
 	];
-	const actual = reducer(list, actions.removeItem({ id: 'b' }));
+	const actual = reducer(list, removeItem({ id: 'b' }));
 	const expected = [
 		{ id: 'a' },
 	];
@@ -52,7 +58,7 @@ test('Can move items up a list', (t) => {
 		{ id: 'b' },
 		{ id: 'a' },
 	];
-	const actual = reducer(list, actions.moveItemUp({ id: 'a' })).map((item) => item.id);
+	const actual = reducer(list, moveItemUp({ id: 'a' })).map((item) => item.id);
 	const expected = [
 		'a',
 		'b',
@@ -65,7 +71,7 @@ test('Cannot move item up if it is at the top of the list', (t) => {
 		{ id: 'a' },
 		{ id: 'b' },
 	];
-	const actual = reducer(list, actions.moveItemUp({ id: 'a' })).map((item) => item.id);
+	const actual = reducer(list, moveItemUp({ id: 'a' })).map((item) => item.id);
 	const expected = [
 		'a',
 		'b',
@@ -78,7 +84,7 @@ test('Cannot move an item up if it is not in the list', (t) => {
 		{ id: 'a' },
 		{ id: 'b' },
 	];
-	const actual = reducer(list, actions.moveItemUp({ id: 'c' })).map((item) => item.id);
+	const actual = reducer(list, moveItemUp({ id: 'c' })).map((item) => item.id);
 	const expected = [
 		'a',
 		'b',
@@ -91,7 +97,7 @@ test('Can move items down a list', (t) => {
 		{ id: 'b' },
 		{ id: 'a' },
 	];
-	const actual = reducer(list, actions.moveItemDown({ id: 'b' })).map((item) => item.id);
+	const actual = reducer(list, moveItemDown({ id: 'b' })).map((item) => item.id);
 	const expected = [
 		'a',
 		'b',
@@ -104,7 +110,7 @@ test('Cannot move item down if it is at the top of the list', (t) => {
 		{ id: 'a' },
 		{ id: 'b' },
 	];
-	const actual = reducer(list, actions.moveItemDown({ id: 'b' })).map((item) => item.id);
+	const actual = reducer(list, moveItemDown({ id: 'b' })).map((item) => item.id);
 	const expected = [
 		'a',
 		'b',
@@ -117,7 +123,7 @@ test('Cannot move an item down if it is not in the list', (t) => {
 		{ id: 'a' },
 		{ id: 'b' },
 	];
-	const actual = reducer(list, actions.moveItemDown({ id: 'c' })).map((item) => item.id);
+	const actual = reducer(list, moveItemDown({ id: 'c' })).map((item) => item.id);
 	const expected = [
 		'a',
 		'b',

@@ -1,8 +1,11 @@
-import * as types from './types';
+import {
+	SET_STATUS,
+	UPDATE_SOURCE,
+} from './types';
 
 export function setStatus (id, status) {
 	return {
-		type: types.SET_STATUS,
+		type: SET_STATUS,
 		id,
 		status,
 	};
@@ -10,7 +13,7 @@ export function setStatus (id, status) {
 
 export function updateSource (id, source) {
 	return {
-		type: types.UPDATE_SOURCE,
+		type: UPDATE_SOURCE,
 		id,
 		source,
 	};

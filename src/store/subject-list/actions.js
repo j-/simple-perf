@@ -1,36 +1,42 @@
-import * as types from './types';
+import {
+	APPEND_ITEM,
+	PREPEND_ITEM,
+	REMOVE_ITEM,
+	MOVE_ITEM_UP,
+	MOVE_ITEM_DOWN,
+} from './types';
 
 export function appendItem (item) {
 	return {
-		type: types.APPEND_ITEM,
+		type: APPEND_ITEM,
 		item,
 	};
 }
 
 export function prependItem (item) {
 	return {
-		type: types.PREPEND_ITEM,
+		type: PREPEND_ITEM,
 		item,
 	};
 }
 
 export function removeItem (item) {
 	return {
-		type: types.REMOVE_ITEM,
+		type: REMOVE_ITEM,
 		item,
 	};
 }
 
 export function moveItemUp (item) {
 	return {
-		type: types.MOVE_ITEM_UP,
+		type: MOVE_ITEM_UP,
 		item,
 	};
 }
 
 export function moveItemDown (item) {
 	return {
-		type: types.MOVE_ITEM_DOWN,
+		type: MOVE_ITEM_DOWN,
 		item,
 	};
 }
