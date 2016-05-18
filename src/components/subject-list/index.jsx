@@ -1,10 +1,10 @@
 import React from 'react';
-import SubjectItem from '../subject-item';
+import SubjectListItem from '../subject-list-item';
 
 export default class SubjectList extends React.Component {
 	buildItems (list) {
 		return list.map((item) => {
-			return <SubjectItem item={ item } key={ item.id } />
+			return <SubjectListItem item={ item } key={ item.id } />
 		});
 	}
 
