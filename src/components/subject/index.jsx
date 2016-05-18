@@ -1,5 +1,6 @@
 import React from 'react';
 import CodeMirror from 'react-codemirror';
+import editorOptions from './editor-options';
 
 export default class Subject extends React.Component {
 	render () {
@@ -14,9 +15,6 @@ export default class Subject extends React.Component {
 			id,
 			source,
 		} = item;
-		const editorOptions = {
-			mode: 'javascript',
-		};
 		return <div>
 			<span>ID: { id }</span>
 			<CodeMirror
