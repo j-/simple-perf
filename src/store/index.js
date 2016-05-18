@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import subjectReducer from './subject/reducer';
+import reducer from './subject-list/reducer';
 
-export default createStore(subjectReducer);
+export default createStore(reducer);
