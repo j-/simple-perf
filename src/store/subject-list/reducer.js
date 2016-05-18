@@ -3,6 +3,24 @@ import * as types from './types';
 const UP = -1;
 const DOWN = 1;
 
+function swap (arr, i, j) {
+	[arr[i], arr[j]] = [arr[j], arr[i]];
+}
+
+function moveUp (arr, i) {
+	if (i <= 0) {
+		return;
+	}
+	swap(arr, i - 1, i);
+}
+
+function moveDown (arr, i) {
+	if (i >= arr.length - 1) {
+		return;
+	}
+	swap(arr, i, i + 1);
+}
+
 export default function (state = [], action = {}) {
 	let itemIndex, item, list;
 	switch (action.type) {
@@ -25,28 +43,18 @@ export default function (state = [], action = {}) {
 				return item.id === action.item.id;
 			});
 			list = [...state];
-			list.splice(
-				// Index to insert at
-				itemIndex + UP,
-				// Do not remove any items
-				0,
-				// Move found item
-				...list.splice(itemIndex, itemIndex + 1)
-			);
+			if (itemIndex > -1) {
+				moveUp(list, itemIndex);
+			}
 			return list;
 		case types.MOVE_ITEM_DOWN:
 			itemIndex = state.findIndex((item, i) => {
 				return item.id === action.item.id;
 			});
 			list = [...state];
-			list.splice(
-				// Index to insert at
-				itemIndex + DOWN,
-				// Do not remove any items
-				0,
-				// Move found item
-				...list.splice(itemIndex, itemIndex + 1)
-			);
+			if (itemIndex > -1) {
+				moveDown(list, itemIndex);
+			}
 			return list;
 		default:
 			return state;
