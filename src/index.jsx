@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './styles';
+
 import { Provider } from 'react-redux';
 import SuiteContainer from './components/suite/container';
 import store from './store';
