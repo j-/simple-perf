@@ -52,29 +52,30 @@ function moveDown (arr, i) {
 }
 
 export default function (state = [], action = {}) {
-	let item, list;
+	const { item } = action;
+	let list;
 	switch (action.type) {
 		case types.PREPEND_ITEM:
 			return [
-				action.item,
+				item,
 				...state,
 			];
 		case types.APPEND_ITEM:
 			return [
 				...state,
-				action.item,
+				item,
 			];
 		case types.REMOVE_ITEM:
-			return state.filter((item) => {
-				return item.id !== action.item.id;
+			return state.filter(({ id }) => {
+				return id !== item.id;
 			});
 		case types.MOVE_ITEM_UP:
 			list = [...state];
-			moveUp(list, findIndex(list, action.item));
+			moveUp(list, findIndex(list, item));
 			return list;
 		case types.MOVE_ITEM_DOWN:
 			list = [...state];
-			moveDown(list, findIndex(list, action.item));
+			moveDown(list, findIndex(list, item));
 			return list;
 		default:
 			return state;
