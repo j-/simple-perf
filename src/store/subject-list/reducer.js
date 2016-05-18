@@ -4,6 +4,18 @@ const UP = -1;
 const DOWN = 1;
 
 /**
+ * Looks in a list for a given item. Matches by ID.
+ * @param {Array} list Array to search
+ * @param {String} item.id Item ID to search for
+ * @return {Number} Index of item or -1 if not found
+ */
+function findIndex (list, { id }) {
+	return list.findIndex((item) => {
+		return item.id === id;
+	});
+}
+
+/**
  * Swap array items at two given indexes.
  * @param {Array} arr Array to mutate
  * @param {Number} i Index of first item
@@ -40,7 +52,7 @@ function moveDown (arr, i) {
 }
 
 export default function (state = [], action = {}) {
-	let itemIndex, item, list;
+	let item, list;
 	switch (action.type) {
 		case types.PREPEND_ITEM:
 			return [
@@ -57,18 +69,12 @@ export default function (state = [], action = {}) {
 				return item.id !== action.item.id;
 			});
 		case types.MOVE_ITEM_UP:
-			itemIndex = state.findIndex((item, i) => {
-				return item.id === action.item.id;
-			});
 			list = [...state];
-			moveUp(list, itemIndex);
+			moveUp(list, findIndex(list, action.item));
 			return list;
 		case types.MOVE_ITEM_DOWN:
-			itemIndex = state.findIndex((item, i) => {
-				return item.id === action.item.id;
-			});
 			list = [...state];
-			moveDown(list, itemIndex);
+			moveDown(list, findIndex(list, action.item));
 			return list;
 		default:
 			return state;
