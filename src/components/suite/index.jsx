@@ -1,5 +1,5 @@
 import React from 'react';
-import Subject from '../subject';
+import SubjectContainer from '../subject/container';
 import SubjectList from '../subject-list';
 
 export default class Suite extends React.Component {
@@ -9,7 +9,7 @@ export default class Suite extends React.Component {
 			addItem,
 		} = this.props;
 		return <div>
-			<SubjectList list={ list } Item={ Subject } />
+			<SubjectList list={ list } Item={ SubjectContainer } />
 			<button onClick={ addItem }>
 				Add new item
 			</button>
