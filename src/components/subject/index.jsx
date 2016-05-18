@@ -10,7 +10,10 @@ export default class Subject extends React.Component {
 			remove,
 			updateSource,
 		} = this.props;
-		const { id, source } = item;
+		const {
+			id,
+			source,
+		} = item;
 		const editorOptions = {
 			mode: 'javascript',
 		};
@@ -18,7 +21,7 @@ export default class Subject extends React.Component {
 			<span>ID: { id }</span>
 			<CodeMirror
 				value={ source }
-				onChange={ (source) => updateSource(source) }
+				onChange={ (source) => updateSource(id, source) }
 				options={ editorOptions }
 			/>
 			<div class="subject-actions">

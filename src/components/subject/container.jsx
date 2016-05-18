@@ -24,8 +24,8 @@ const mapDispatchToProps = (dispatch) => {
 			const action = listActions.removeItem(item);
 			dispatch(action);
 		},
-		updateSource: (source) => {
-			const action = itemActions.updateSource(source);
+		updateSource: (id, source) => {
+			const action = itemActions.updateSource(id, source);
 			dispatch(action);
 		},
 	};

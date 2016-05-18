@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch) => {
 		addItem: () => {
 			const item = {
 				id: uuid(),
+				source: null,
 			};
 			const action = actions.appendItem(item);
 			dispatch(action);
