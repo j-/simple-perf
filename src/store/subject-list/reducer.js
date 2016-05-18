@@ -1,4 +1,6 @@
-import * as types from './types';
+import * as listTypes from './types';
+import * as itemTypes from '../subject/types';
+import itemReducer from '../subject/reducer';
 
 const UP = -1;
 const DOWN = 1;
@@ -55,28 +57,36 @@ export default function (state = [], action = {}) {
 	const { item } = action;
 	let list;
 	switch (action.type) {
-		case types.PREPEND_ITEM:
+		case listTypes.PREPEND_ITEM:
 			return [
 				item,
 				...state,
 			];
-		case types.APPEND_ITEM:
+		case listTypes.APPEND_ITEM:
 			return [
 				...state,
 				item,
 			];
-		case types.REMOVE_ITEM:
+		case listTypes.REMOVE_ITEM:
 			return state.filter(({ id }) => {
 				return id !== item.id;
 			});
-		case types.MOVE_ITEM_UP:
+		case listTypes.MOVE_ITEM_UP:
 			list = [...state];
 			moveUp(list, findIndex(list, item));
 			return list;
-		case types.MOVE_ITEM_DOWN:
+		case listTypes.MOVE_ITEM_DOWN:
 			list = [...state];
 			moveDown(list, findIndex(list, item));
 			return list;
+		case itemTypes.SET_STATUS:
+		case itemTypes.UPDATE_SOURCE:
+			return state.map((item) => {
+				if (item.id !== action.id) {
+					return item;
+				}
+				return itemReducer(item, action);
+			});
 		default:
 			return state;
 	}
