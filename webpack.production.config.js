@@ -10,5 +10,7 @@ module.exports = Object.assign({}, config, {
 				'NODE_ENV': JSON.stringify('production'),
 			},
 		}),
+
+		new webpack.optimize.UglifyJsPlugin(),
 	],
 });
