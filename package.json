@@ -5,6 +5,7 @@
   "main": "dist/index.html",
   "scripts": {
     "build": "webpack",
+    "build:prod": "webpack --production --config webpack.production.config.js",
     "build:watch": "webpack --watch",
     "test": "ava",
     "test:watch": "ava --watch"
