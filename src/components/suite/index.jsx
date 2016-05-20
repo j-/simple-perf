@@ -31,6 +31,7 @@ export default class Suite extends React.Component {
 			<button onClick={ runSuite }>
 				Run suite
 			</button>
+			<p>Check console for results</p>
 		</div>;
 	}
 }
