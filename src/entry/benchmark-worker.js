@@ -13,8 +13,6 @@ import {
 	STATUS_RUNNING,
 } from '../store/subject/statuses';
 
-console.log(Benchmark.platform);
-
 function dispatch (message) {
 	global.postMessage(message);
 }
@@ -58,7 +56,6 @@ function startPerfTest (state) {
 		async: false,
 	});
 
-	console.info('Complete');
 	suite.filter('fastest').forEach((benchmark) => {
 		const id = benchmark.name;
 		const action = markFastest(id);
