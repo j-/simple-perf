@@ -31,7 +31,7 @@ export default class Subject extends React.Component {
 		const fastestIndicator = isFastest ? <FastestIndicator /> : null;
 		const skipButton = canSkip ? <Button onClick={ onSkip }>Skip test</Button> : null;
 		const cancelButton = canCancel ? <Button onClick={ onCancel }>Cancel test</Button> : null;
-		return <div>
+		return <div className="subject">
 			<CodeMirror
 				value={ source }
 				onChange={ onUpdateSource }
