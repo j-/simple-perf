@@ -9,7 +9,12 @@ import {
 	updateSource,
 } from '../../state/subject/actions';
 
-const mapStateToProps = ({ id, source, status, isFastest }) => {
+const mapStateToProps = (state = [], ownProps) => {
+	const id = ownProps.id;
+	const item = state.find((item) => {
+		return item.id === id;
+	});
+	const { source, status, isFastest } = item;
 	return {
 		id,
 		source,

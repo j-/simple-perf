@@ -7,18 +7,15 @@ import FastestIndicator from '../fastest-indicator';
 export default class Subject extends React.Component {
 	render () {
 		const {
-			item,
+			id,
+			source,
+			status,
+			isFastest,
 			moveUp,
 			moveDown,
 			remove,
 			updateSource,
 		} = this.props;
-		const {
-			id,
-			source,
-			status,
-			isFastest,
-		} = item;
 		const fastestIndicator = isFastest ? <FastestIndicator /> : null;
 		return <div>
 			<CodeMirror

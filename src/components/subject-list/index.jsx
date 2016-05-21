@@ -6,7 +6,7 @@ export default class SubjectList extends React.Component {
 		const { list, Item } = this.props;
 		const items = list.map((item) => {
 			return <SubjectListItem item={ item } key={ item.id }>
-				<Item item={ item } />
+				<Item id={ item.id } />
 			</SubjectListItem>;
 		});
 		return <div className="subject-list">{ items }</div>;
