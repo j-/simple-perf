@@ -42,6 +42,8 @@ test('Can set source if ID matches', (t) => {
 	const expected = {
 		id: 'foobar',
 		source: 'new',
+		// Status is changed when source updated
+		status: 'STATUS_DEFAULT',
 	};
 	const action = updateSource('foobar', 'new');
 	const actual = reducer(subject, action);

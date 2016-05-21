@@ -47,6 +47,7 @@ export default function (state = buildSubject(), action = {}) {
 				...state,
 				id: action.id,
 				source: action.source,
+				status: STATUS_DEFAULT,
 			};
 		case MARK_FASTEST:
 			return {
