@@ -9,12 +9,12 @@ import {
 	updateSource,
 } from '../../store/subject/actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ id, source, status, isFastest }) => {
 	return {
-		id: state.id,
-		source: state.source,
-		status: state.status,
-		isFastest: state.isFastest,
+		id,
+		source,
+		status,
+		isFastest,
 	};
 };
 
