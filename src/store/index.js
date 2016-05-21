@@ -53,7 +53,19 @@ if (!localStorageState || !localStorageState.length) {
 	saveLocalStorageState(preloadState);
 }
 
-const worker = new Worker('benchmark-worker.js');
+let worker;
+try {
+	worker = new Worker('benchmark-worker.js');
+} catch (err) {
+	console.warn('Could not load benchmark worker');
+	if (err.name === 'SecurityError') {
+		if (location.protocol === 'file:') {
+			console.warn('Workers cannot be accessed on the `file:` protocol');
+			console.warn('Please load this app over HTTP(S)');
+		}
+	}
+	throw err;
+}
 const runner = (store) => (next) => (action) => {
 	if (action.type === START_PERF_TEST) {
 		const result = next(action);
