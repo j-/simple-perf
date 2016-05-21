@@ -6,12 +6,15 @@ import {
 	setStatus,
 } from '../store/subject/actions';
 import {
+	STATUS_CANCELLED,
 	STATUS_SUCCESS,
+	STATUS_ERROR,
+	STATUS_RUNNING,
 } from '../store/subject/statuses';
 
 console.log(Benchmark.platform);
 
-function sendMessage (message) {
+function dispatch (message) {
 	global.postMessage(message);
 }
 
@@ -19,22 +22,36 @@ function startPerfTest (state) {
 	const tests = state;
 	const suite = new Benchmark.Suite();
 
-	suite.on('cycle', ({ target }) => {
-		const id = target.name;
-		const action = setStatus(id, STATUS_SUCCESS);
-		sendMessage(action);
-	});
-
-	suite.reset();
-
-	tests.forEach((test) => {
+	tests.forEach(({ id, source, status }) => {
+		let didError = false;
 		suite.add({
-			name: test.id,
-			fn: test.source,
+			name: id,
+			fn: source,
+			onAbort: () => {
+				if (didError) {
+					return;
+				}
+				const action = setStatus(id, STATUS_CANCELLED);
+				dispatch(action);
+			},
+			onComplete: () => {
+				if (didError) {
+					return;
+				}
+				const action = setStatus(id, STATUS_SUCCESS);
+				dispatch(action);
+			},
+			onError: () => {
+				didError = true;
+				const action = setStatus(id, STATUS_ERROR);
+				dispatch(action);
+			},
+			onStart: () => {
+				const action = setStatus(id, STATUS_RUNNING);
+				dispatch(action);
+			},
 		});
 	});
-
-	console.info('Running');
 
 	suite.run({
 		async: false,
