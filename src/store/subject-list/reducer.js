@@ -1,6 +1,7 @@
 import {
 	PREPEND_ITEM,
 	APPEND_ITEM,
+	CREATE_NEW_ITEM,
 	REMOVE_ITEM,
 	MOVE_ITEM_UP,
 	MOVE_ITEM_DOWN,
@@ -75,6 +76,11 @@ export default function (state = [], action = {}) {
 			return [
 				...state,
 				item,
+			];
+		case CREATE_NEW_ITEM:
+			return [
+				...state,
+				itemReducer(undefined, action),
 			];
 		case REMOVE_ITEM:
 			return state.filter(({ id }) => {

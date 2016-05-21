@@ -2,7 +2,7 @@ import uuid from 'node-uuid';
 import { connect } from 'react-redux';
 import Suite from './';
 import {
-	appendItem,
+	createNewItem,
 } from '../../store/subject-list/actions';
 
 const mapStateToProps = (state) => {
@@ -14,11 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addItem: () => {
-			const item = {
-				id: uuid(),
-				source: null,
-			};
-			const action = appendItem(item);
+			const action = createNewItem(item);
 			dispatch(action);
 		},
 	};

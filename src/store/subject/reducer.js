@@ -1,9 +1,18 @@
+import uuid from 'node-uuid';
 import {
 	SET_STATUS,
 	UPDATE_SOURCE,
 } from './types';
 
-export default function (state = {}, action = {}) {
+function buildSubject () {
+	return {
+		id: uuid(),
+		source: null,
+		status: null,
+	};
+}
+
+export default function (state = buildSubject(), action = {}) {
 	if (action.id !== state.id) {
 		return state;
 	}

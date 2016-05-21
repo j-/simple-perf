@@ -3,6 +3,7 @@ import reducer from '../src/store/subject-list/reducer';
 import {
 	prependItem,
 	appendItem,
+	createNewItem,
 	removeItem,
 	moveItemUp,
 	moveItemDown,
@@ -38,6 +39,18 @@ test('Can append items to a list', (t) => {
 	];
 	t.is(actual.length, 2, 'Length is correct');
 	t.deepEqual(actual, expected, 'Output matches expected');
+});
+
+test('Can create new items in list', (t) => {
+	const list = [
+		{ id: 'a' },
+	];
+	const result = reducer(list, createNewItem());
+	t.is(result.length, 2, 'Length is correct');
+	t.is(result[0].id, 'a', 'First item did not move');
+	t.is(typeof result[1].id, 'string', 'New item has an ID');
+	t.truthy(result[1].hasOwnProperty('source'), 'New item has source');
+	t.truthy(result[1].hasOwnProperty('status'), 'New item has a status');
 });
 
 test('Can remove items from a list', (t) => {

@@ -1,6 +1,7 @@
 import {
 	APPEND_ITEM,
 	PREPEND_ITEM,
+	CREATE_NEW_ITEM,
 	REMOVE_ITEM,
 	MOVE_ITEM_UP,
 	MOVE_ITEM_DOWN,
@@ -17,6 +18,12 @@ export function prependItem (item) {
 	return {
 		type: PREPEND_ITEM,
 		item,
+	};
+}
+
+export function createNewItem () {
+	return {
+		type: CREATE_NEW_ITEM,
 	};
 }
 
