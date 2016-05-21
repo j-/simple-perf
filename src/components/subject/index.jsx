@@ -21,7 +21,6 @@ export default class Subject extends React.Component {
 		} = item;
 		const fastestIndicator = isFastest ? <FastestIndicator /> : null;
 		return <div>
-			<span>ID: { id }</span>
 			<CodeMirror
 				value={ source }
 				onChange={ (source) => updateSource(id, source) }
