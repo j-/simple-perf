@@ -44,7 +44,8 @@ let preloadState;
 if (localStorageState) {
 	// Local storage state exists
 	preloadState = localStorageState;
-} else {
+}
+if (!localStorageState || !localStorageState.length) {
 	// Create new state tree
 	preloadState = makeDefaultState();
 	// Persist this new state tree
