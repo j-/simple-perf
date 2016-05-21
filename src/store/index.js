@@ -1,6 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import uuid from 'node-uuid';
 import reducer from './subject-list/reducer';
+import {
+	START_PERF_TEST,
+} from './subject-list/types';
 
 const LOCAL_STORAGE_KEY = 'simple-perf-store';
 
@@ -48,7 +51,21 @@ if (localStorageState) {
 	saveLocalStorageState(preloadState);
 }
 
-const store = createStore(reducer, preloadState);
+const worker = new Worker('benchmark-worker.js');
+const runner = (store) => (next) => (action) => {
+	if (action.type === START_PERF_TEST) {
+		const result = next(action);
+		worker.postMessage({
+			type: START_PERF_TEST,
+			state: store.getState(),
+		});
+		return result;
+	}
+	return next(action);
+};
+
+const middleware = applyMiddleware(runner);
+const store = createStore(reducer, preloadState, middleware);
 
 store.subscribe(() => {
 	const state = store.getState();

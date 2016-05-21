@@ -1,13 +1,12 @@
 import Benchmark from 'benchmark';
-import register from 'promise-worker/register';
+import {
+	START_PERF_TEST,
+} from '../store/subject-list/types';
 
 console.log(Benchmark.platform);
 
-register((message) => {
-	if (message.type !== 'test') {
-		return;
-	}
-
+function startPerfTest (state) {
+	const tests = state;
 	const suite = new Benchmark.Suite();
 
 	suite.on('cycle', ({ target }) => {
@@ -16,7 +15,7 @@ register((message) => {
 
 	suite.reset();
 
-	message.tests.forEach((test) => {
+	tests.forEach((test) => {
 		suite.add({
 			name: test.id,
 			fn: test.source,
@@ -31,4 +30,13 @@ register((message) => {
 
 	console.info('Complete');
 	console.log('Fastest is ' + suite.filter('fastest').map('name'));
+}
+
+global.addEventListener('message', function (message) {
+	const action = message.data;
+	switch (action.type) {
+		case START_PERF_TEST:
+			startPerfTest(action.state);
+			break;
+	}
 });
