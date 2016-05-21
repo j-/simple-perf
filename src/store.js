@@ -5,6 +5,9 @@ import subjectReducer from './state/subject/reducer';
 import {
 	START_PERF_TEST,
 } from './state/subject-list/types';
+import {
+	SET_STATUS,
+} from './state/subject/types';
 
 const LOCAL_STORAGE_KEY = 'simple-perf-store';
 
@@ -74,6 +77,8 @@ const runner = (store) => (next) => (action) => {
 			state: store.getState(),
 		});
 		return result;
+	} else if (action.type === SET_STATUS) {
+		worker.postMessage(action);
 	}
 	return next(action);
 };

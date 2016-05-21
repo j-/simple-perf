@@ -8,66 +8,116 @@ import {
 } from '../state/subject/actions';
 import {
 	STATUS_CANCELLED,
+	STATUS_SKIPPED,
 	STATUS_SUCCESS,
 	STATUS_ERROR,
 	STATUS_RUNNING,
 } from '../state/subject/statuses';
+import {
+	SET_STATUS,
+} from '../state/subject/types';
+
+let currentState = null;
+let currentSuite = null;
 
 function dispatch (message) {
 	global.postMessage(message);
 }
 
-function startPerfTest (state) {
-	const tests = state;
-	const suite = new Benchmark.Suite();
+function getBenchmark (id) {
+	const suite = currentSuite;
+	for (let i = 0; i < suite.length; i++) {
+		let bench = suite[i];
+		if (bench.name === id) {
+			return bench;
+		}
+	}
+	return null;
+}
 
-	tests.forEach(({ id, source, status }) => {
+function startPerfTest () {
+	currentSuite = new Benchmark.Suite();
+	const tests = currentState;
+	const suite = currentSuite;
+
+	tests.forEach((item) => {
 		let didError = false;
+		let didSkip = false;
 		suite.add({
-			name: id,
-			fn: source,
-			onAbort: () => {
-				if (didError) {
+			name: item.id,
+			fn: item.source,
+			onAbort: ({ target }) => {
+				if (didError || didSkip || target.aborted) {
 					return;
 				}
-				const action = setStatus(id, STATUS_CANCELLED);
+				const action = setStatus(item.id, STATUS_CANCELLED);
 				dispatch(action);
 			},
-			onComplete: () => {
-				if (didError) {
+			onComplete: ({ target }) => {
+				if (didError || didSkip || target.aborted) {
 					return;
 				}
-				const action = setStatus(id, STATUS_SUCCESS);
+				const action = setStatus(item.id, STATUS_SUCCESS);
 				dispatch(action);
 			},
 			onError: () => {
 				didError = true;
-				const action = setStatus(id, STATUS_ERROR);
+				const action = setStatus(item.id, STATUS_ERROR);
 				dispatch(action);
 			},
-			onStart: () => {
-				const action = setStatus(id, STATUS_RUNNING);
+			onStart: ({ target }) => {
+				if (item.status === STATUS_SKIPPED) {
+					didSkip = true;
+					target.abort();
+					return;
+				}
+				const action = setStatus(item.id, STATUS_RUNNING);
 				dispatch(action);
 			},
 		});
 	});
 
 	suite.run({
-		async: false,
+		async: true,
 	});
 
-	suite.filter('fastest').forEach((benchmark) => {
-		const id = benchmark.name;
-		const action = markFastest(id);
-		dispatch(action);
+	suite.on('complete', function () {
+		suite.filter('fastest').forEach((bench) => {
+			const id = bench.name;
+			const action = markFastest(id);
+			dispatch(action);
+		});
 	});
+}
+
+function handleAbortTest (id) {
+	const bench = getBenchmark(id);
+	bench.abort();
+}
+
+function handleSkipTest (/* id */) {
+	// Do nothing
+}
+
+function handleStatusChange (id, status) {
+	const item = currentState.find((item) => item.id === id);
+	item.status = status;
+	if (status === STATUS_CANCELLED) {
+		handleAbortTest(id);
+	} else if (status === STATUS_SKIPPED) {
+		handleSkipTest(id);
+	}
 }
 
 global.addEventListener('message', function (message) {
 	const action = message.data;
 	switch (action.type) {
 		case START_PERF_TEST:
-			startPerfTest(action.state);
+			currentState = action.state;
+			startPerfTest();
+			break;
+		case SET_STATUS:
+			handleStatusChange(action.id, action.status);
 			break;
 	}
 });
