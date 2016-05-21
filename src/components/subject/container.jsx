@@ -35,27 +35,27 @@ const mapStateToProps = (state = [], ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 	const id = ownProps.id;
 	return {
-		moveUp: () => {
+		onMoveUp: () => {
 			const action = moveItemUp({ id });
 			dispatch(action);
 		},
-		moveDown: () => {
+		onMoveDown: () => {
 			const action = moveItemDown({ id });
 			dispatch(action);
 		},
-		remove: () => {
+		onRemove: () => {
 			const action = removeItem({ id });
 			dispatch(action);
 		},
-		updateSource: (source) => {
+		onUpdateSource: (source) => {
 			const action = updateSource(id, source);
 			dispatch(action);
 		},
-		cancel: () => {
+		onCancel: () => {
 			const action = setStatus(id, STATUS_CANCELLED);
 			dispatch(action);
 		},
-		skip: () => {
+		onSkip: () => {
 			const action = setStatus(id, STATUS_SKIPPED);
 			dispatch(action);
 		},
