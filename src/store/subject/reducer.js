@@ -3,12 +3,15 @@ import {
 	SET_STATUS,
 	UPDATE_SOURCE,
 } from './types';
+import {
+	STATUS_DEFAULT,
+} from './statuses';
 
 function buildSubject () {
 	return {
 		id: uuid(),
 		source: null,
-		status: null,
+		status: STATUS_DEFAULT,
 	};
 }
 

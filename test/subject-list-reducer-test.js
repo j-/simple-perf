@@ -50,7 +50,7 @@ test('Can create new items in list', (t) => {
 	t.is(result[0].id, 'a', 'First item did not move');
 	t.is(typeof result[1].id, 'string', 'New item has an ID');
 	t.truthy(result[1].hasOwnProperty('source'), 'New item has source');
-	t.truthy(result[1].hasOwnProperty('status'), 'New item has a status');
+	t.is(result[1].status, 'STATUS_DEFAULT', 'New item has default status');
 });
 
 test('Can remove items from a list', (t) => {
