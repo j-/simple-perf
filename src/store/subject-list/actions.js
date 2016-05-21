@@ -5,6 +5,7 @@ import {
 	REMOVE_ITEM,
 	MOVE_ITEM_UP,
 	MOVE_ITEM_DOWN,
+	START_PERF_TEST,
 } from './types';
 
 export function appendItem (item) {
@@ -45,5 +46,11 @@ export function moveItemDown (item) {
 	return {
 		type: MOVE_ITEM_DOWN,
 		item,
+	};
+}
+
+export function startPerfTest () {
+	return {
+		type: START_PERF_TEST,
 	};
 }

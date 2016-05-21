@@ -9,3 +9,5 @@ export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const MOVE_ITEM_UP = 'MOVE_ITEM_UP';
 
 export const MOVE_ITEM_DOWN = 'MOVE_ITEM_DOWN';
+
+export const START_PERF_TEST = 'START_PERF_TEST';

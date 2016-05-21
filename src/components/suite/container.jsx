@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Suite from './';
 import {
 	createNewItem,
+	startPerfTest,
 } from '../../store/subject-list/actions';
 
 const mapStateToProps = (state) => {
@@ -15,6 +16,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		addItem: () => {
 			const action = createNewItem();
+			dispatch(action);
+		},
+		startTest: () => {
+			const action = startPerfTest();
 			dispatch(action);
 		},
 	};

@@ -5,6 +5,7 @@ import {
 	REMOVE_ITEM,
 	MOVE_ITEM_UP,
 	MOVE_ITEM_DOWN,
+	START_PERF_TEST,
 } from './types';
 import {
 	SET_STATUS,
@@ -100,6 +101,10 @@ export default function (state = [], action = {}) {
 				if (item.id !== action.id) {
 					return item;
 				}
+				return itemReducer(item, action);
+			});
+		case START_PERF_TEST:
+			return state.map((item) => {
 				return itemReducer(item, action);
 			});
 		default:
