@@ -21,7 +21,7 @@ export default class SubjectStatus extends React.Component {
 			case STATUS_SKIPPED: return 'Skipped';
 			case STATUS_CANCELLED: return 'Cancelled';
 			case STATUS_ERROR: return 'Error';
-			case STATUS_SUCCESS: return 'Success';
+			case STATUS_SUCCESS: return 'Done';
 		}
 	}
 
