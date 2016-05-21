@@ -1,4 +1,5 @@
 import React from 'react';
+import { Panel, ButtonToolbar, Button } from 'react-bootstrap';
 import SubjectContainer from '../subject/container';
 import SubjectList from '../subject-list';
 
@@ -11,12 +12,17 @@ export default class Suite extends React.Component {
 		} = this.props;
 		return <div className="suite">
 			<SubjectList list={ list } Item={ SubjectContainer } />
-			<button onClick={ addItem }>
-				Add new item
-			</button>
-			<button onClick={ startTest }>
-				Run suite
-			</button>
+			<br />
+			<Panel>
+				<ButtonToolbar>
+					<Button onClick={ addItem }>
+						Add new item
+					</Button>
+					<Button onClick={ startTest }>
+						Run suite
+					</Button>
+				</ButtonToolbar>
+			</Panel>
 		</div>;
 	}
 }
