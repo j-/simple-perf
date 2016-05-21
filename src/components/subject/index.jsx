@@ -1,5 +1,10 @@
 import React from 'react';
-import { ButtonGroup, Button, Alert } from 'react-bootstrap';
+import {
+	ButtonToolbar,
+	ButtonGroup,
+	Button,
+	Alert,
+} from 'react-bootstrap';
 import CodeMirror from 'react-codemirror';
 import editorOptions from './editor-options';
 import SubjectStatus from '../subject-status';
@@ -32,15 +37,17 @@ export default class Subject extends React.Component {
 				onChange={ onUpdateSource }
 				options={ editorOptions }
 			/>
-			<ButtonGroup>
-				<Button onClick={ onMoveUp } disabled={ !canMoveUp }>Move up</Button>
-				<Button onClick={ onMoveDown } disabled={ !canMoveDown }>Move down</Button>
-				<Button onClick={ onRemove }>Delete</Button>
-			</ButtonGroup>
-			<ButtonGroup>
-				{ skipButton }
-				{ cancelButton }
-			</ButtonGroup>
+			<ButtonToolbar>
+				<ButtonGroup>
+					<Button onClick={ onMoveUp } disabled={ !canMoveUp }>Move up</Button>
+					<Button onClick={ onMoveDown } disabled={ !canMoveDown }>Move down</Button>
+					<Button onClick={ onRemove }>Delete</Button>
+				</ButtonGroup>
+				<ButtonGroup>
+					{ skipButton }
+					{ cancelButton }
+				</ButtonGroup>
+			</ButtonToolbar>
 			<Alert>
 				{ fastestIndicator }
 				<SubjectStatus status={ status } />
