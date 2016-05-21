@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import uuid from 'node-uuid';
-import reducer from './subject-list/reducer';
-import subjectReducer from './subject/reducer';
+import reducer from './state/subject-list/reducer';
+import subjectReducer from './state/subject/reducer';
 import {
 	START_PERF_TEST,
-} from './subject-list/types';
+} from './state/subject-list/types';
 
 const LOCAL_STORAGE_KEY = 'simple-perf-store';
 

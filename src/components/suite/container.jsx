@@ -4,7 +4,7 @@ import Suite from './';
 import {
 	createNewItem,
 	startPerfTest,
-} from '../../store/subject-list/actions';
+} from '../../state/subject-list/actions';
 
 const mapStateToProps = (state) => {
 	return {

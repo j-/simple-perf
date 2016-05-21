@@ -7,7 +7,7 @@ import {
 	STATUS_CANCELLED,
 	STATUS_ERROR,
 	STATUS_SUCCESS,
-} from '../../store/subject/statuses';
+} from '../../state/subject/statuses';
 
 export default class SubjectStatus extends React.Component {
 	getDisplayText (status) {

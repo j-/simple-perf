@@ -1,10 +1,10 @@
 import test from 'ava';
-import reducer from '../src/store/subject/reducer';
+import reducer from '../src/state/subject/reducer';
 import {
 	setStatus,
 	updateSource,
 	markFastest,
-} from '../src/store/subject/actions';
+} from '../src/state/subject/actions';
 
 test('Can set status if ID matches', (t) => {
 	const subject = {

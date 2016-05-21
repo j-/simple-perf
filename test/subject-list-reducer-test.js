@@ -1,5 +1,5 @@
 import test from 'ava';
-import reducer from '../src/store/subject-list/reducer';
+import reducer from '../src/state/subject-list/reducer';
 import {
 	prependItem,
 	appendItem,
@@ -7,7 +7,7 @@ import {
 	removeItem,
 	moveItemUp,
 	moveItemDown,
-} from '../src/store/subject-list/actions';
+} from '../src/state/subject-list/actions';
 
 test('Returns an empty list as default state', (t) => {
 	const result = reducer();

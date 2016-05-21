@@ -4,10 +4,10 @@ import {
 	moveItemUp,
 	moveItemDown,
 	removeItem,
-} from '../../store/subject-list/actions';
+} from '../../state/subject-list/actions';
 import {
 	updateSource,
-} from '../../store/subject/actions';
+} from '../../state/subject/actions';
 
 const mapStateToProps = ({ id, source, status, isFastest }) => {
 	return {

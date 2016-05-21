@@ -1,17 +1,17 @@
 import Benchmark from 'benchmark';
 import {
 	START_PERF_TEST,
-} from '../store/subject-list/types';
+} from '../state/subject-list/types';
 import {
 	setStatus,
 	markFastest,
-} from '../store/subject/actions';
+} from '../state/subject/actions';
 import {
 	STATUS_CANCELLED,
 	STATUS_SUCCESS,
 	STATUS_ERROR,
 	STATUS_RUNNING,
-} from '../store/subject/statuses';
+} from '../state/subject/statuses';
 
 function dispatch (message) {
 	global.postMessage(message);
