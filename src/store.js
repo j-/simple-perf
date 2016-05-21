@@ -8,6 +8,9 @@ import {
 import {
 	SET_STATUS,
 } from './state/subject/types';
+import {
+	resetState,
+} from './state/subject/actions';
 
 const LOCAL_STORAGE_KEY = 'simple-perf-store';
 
@@ -95,5 +98,7 @@ store.subscribe(() => {
 	const state = store.getState();
 	saveLocalStorageState(state);
 });
+
+store.dispatch(resetState());
 
 export default store;

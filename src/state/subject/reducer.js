@@ -3,6 +3,7 @@ import {
 	SET_STATUS,
 	UPDATE_SOURCE,
 	MARK_FASTEST,
+	RESET_STATE,
 } from './types';
 import {
 	START_PERF_TEST,
@@ -28,6 +29,12 @@ export default function (state = buildSubject(), action = {}) {
 			return {
 				...state,
 				status: STATUS_PENDING,
+				isFastest: false,
+			};
+		case RESET_STATE:
+			return {
+				...state,
+				status: STATUS_DEFAULT,
 				isFastest: false,
 			};
 	}

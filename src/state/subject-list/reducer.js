@@ -11,6 +11,7 @@ import {
 	SET_STATUS,
 	UPDATE_SOURCE,
 	MARK_FASTEST,
+	RESET_STATE,
 } from '../subject/types';
 import itemReducer from '../subject/reducer';
 
@@ -106,6 +107,7 @@ export default function (state = [], action = {}) {
 				return itemReducer(item, action);
 			});
 		case START_PERF_TEST:
+		case RESET_STATE:
 			return state.map((item) => {
 				return itemReducer(item, action);
 			});

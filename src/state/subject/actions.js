@@ -2,6 +2,7 @@ import {
 	SET_STATUS,
 	UPDATE_SOURCE,
 	MARK_FASTEST,
+	RESET_STATE,
 } from './types';
 
 export function setStatus (id, status) {
@@ -24,5 +25,11 @@ export function markFastest (id) {
 	return {
 		type: MARK_FASTEST,
 		id,
+	};
+}
+
+export function resetState () {
+	return {
+		type: RESET_STATE,
 	};
 }
