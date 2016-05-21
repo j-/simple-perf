@@ -22,11 +22,12 @@ export default class Subject extends React.Component {
 				onChange={ (source) => updateSource(id, source) }
 				options={ editorOptions }
 			/>
-			<div class="subject-actions">
+			<div className="subject-actions">
 				<button onClick={ () => moveUp(item) }>Move up</button>
 				<button onClick={ () => moveDown(item) }>Move down</button>
 				<button onClick={ () => remove(item) }>Delete</button>
 			</div>
+
 		</div>;
 	}
 }
