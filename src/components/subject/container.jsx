@@ -23,6 +23,7 @@ const mapStateToProps = (state = [], ownProps) => {
 	const { source, status, isFastest } = item;
 	return {
 		id,
+		index,
 		source,
 		status,
 		isFastest,
