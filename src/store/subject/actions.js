@@ -1,6 +1,7 @@
 import {
 	SET_STATUS,
 	UPDATE_SOURCE,
+	MARK_FASTEST,
 } from './types';
 
 export function setStatus (id, status) {
@@ -16,5 +17,12 @@ export function updateSource (id, source) {
 		type: UPDATE_SOURCE,
 		id,
 		source,
+	};
+}
+
+export function markFastest (id) {
+	return {
+		type: MARK_FASTEST,
+		id,
 	};
 }

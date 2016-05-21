@@ -3,6 +3,7 @@ import reducer from '../src/store/subject/reducer';
 import {
 	setStatus,
 	updateSource,
+	markFastest,
 } from '../src/store/subject/actions';
 
 test('Can set status if ID matches', (t) => {
@@ -57,6 +58,20 @@ test('Does not set source if ID does not match', (t) => {
 		source: 'same',
 	};
 	const action = updateSource('qux', 'new');
+	const actual = reducer(subject, action);
+	t.deepEqual(actual, expected);
+});
+
+test('Can set fastest subject', (t) => {
+	const subject = {
+		id: 'foobar',
+		isFastest: false,
+	};
+	const expected = {
+		id: 'foobar',
+		isFastest: true,
+	};
+	const action = markFastest('foobar');
 	const actual = reducer(subject, action);
 	t.deepEqual(actual, expected);
 });

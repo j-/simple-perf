@@ -4,6 +4,7 @@ import {
 } from '../store/subject-list/types';
 import {
 	setStatus,
+	markFastest,
 } from '../store/subject/actions';
 import {
 	STATUS_CANCELLED,
@@ -58,7 +59,11 @@ function startPerfTest (state) {
 	});
 
 	console.info('Complete');
-	console.log('Fastest is ' + suite.filter('fastest').map('name'));
+	suite.filter('fastest').forEach((benchmark) => {
+		const id = benchmark.name;
+		const action = markFastest(id);
+		dispatch(action);
+	});
 }
 
 global.addEventListener('message', function (message) {

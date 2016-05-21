@@ -2,6 +2,7 @@ import React from 'react';
 import CodeMirror from 'react-codemirror';
 import editorOptions from './editor-options';
 import SubjectStatus from '../subject-status';
+import FastestIndicator from '../fastest-indicator';
 
 export default class Subject extends React.Component {
 	render () {
@@ -16,7 +17,9 @@ export default class Subject extends React.Component {
 			id,
 			source,
 			status,
+			isFastest,
 		} = item;
+		const fastestIndicator = isFastest ? <FastestIndicator /> : null;
 		return <div>
 			<span>ID: { id }</span>
 			<CodeMirror
@@ -30,6 +33,7 @@ export default class Subject extends React.Component {
 				<button onClick={ () => remove(item) }>Delete</button>
 			</div>
 			<SubjectStatus status={ status } />
+			{ fastestIndicator }
 		</div>;
 	}
 }

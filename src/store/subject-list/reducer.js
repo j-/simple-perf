@@ -10,6 +10,7 @@ import {
 import {
 	SET_STATUS,
 	UPDATE_SOURCE,
+	MARK_FASTEST,
 } from '../subject/types';
 import itemReducer from '../subject/reducer';
 
@@ -97,6 +98,7 @@ export default function (state = [], action = {}) {
 			return list;
 		case SET_STATUS:
 		case UPDATE_SOURCE:
+		case MARK_FASTEST:
 			return state.map((item) => {
 				if (item.id !== action.id) {
 					return item;

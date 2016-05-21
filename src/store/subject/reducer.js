@@ -2,6 +2,7 @@ import uuid from 'node-uuid';
 import {
 	SET_STATUS,
 	UPDATE_SOURCE,
+	MARK_FASTEST,
 } from './types';
 import {
 	START_PERF_TEST,
@@ -16,6 +17,7 @@ function buildSubject () {
 		id: uuid(),
 		source: '',
 		status: STATUS_DEFAULT,
+		isFastest: false,
 	};
 }
 
@@ -26,6 +28,7 @@ export default function (state = buildSubject(), action = {}) {
 			return {
 				...state,
 				status: STATUS_PENDING,
+				isFastest: false,
 			};
 	}
 	if (action.id !== state.id) {
@@ -44,6 +47,11 @@ export default function (state = buildSubject(), action = {}) {
 				...state,
 				id: action.id,
 				source: action.source,
+			};
+		case MARK_FASTEST:
+			return {
+				...state,
+				isFastest: true,
 			};
 		default:
 			return state;
