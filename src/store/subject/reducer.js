@@ -10,7 +10,7 @@ import {
 function buildSubject () {
 	return {
 		id: uuid(),
-		source: null,
+		source: '',
 		status: STATUS_DEFAULT,
 	};
 }
