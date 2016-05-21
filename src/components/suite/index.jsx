@@ -9,7 +9,7 @@ export default class Suite extends React.Component {
 			addItem,
 			startTest,
 		} = this.props;
-		return <div>
+		return <div className="suite">
 			<SubjectList list={ list } Item={ SubjectContainer } />
 			<button onClick={ addItem }>
 				Add new item
