@@ -7,7 +7,14 @@ import {
 } from '../../state/subject-list/actions';
 import {
 	updateSource,
+	setStatus,
 } from '../../state/subject/actions';
+import {
+	STATUS_PENDING,
+	STATUS_RUNNING,
+	STATUS_CANCELLED,
+	STATUS_SKIPPED,
+} from '../../state/subject/statuses';
 
 const mapStateToProps = (state = [], ownProps) => {
 	const id = ownProps.id;
@@ -20,25 +27,36 @@ const mapStateToProps = (state = [], ownProps) => {
 		source,
 		status,
 		isFastest,
+		canCancel: status === STATUS_RUNNING,
+		canSkip: status === STATUS_PENDING,
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+	const id = ownProps.id;
 	return {
-		moveUp: (item) => {
-			const action = moveItemUp(item);
+		moveUp: () => {
+			const action = moveItemUp({ id });
 			dispatch(action);
 		},
-		moveDown: (item) => {
-			const action = moveItemDown(item);
+		moveDown: () => {
+			const action = moveItemDown({ id });
 			dispatch(action);
 		},
-		remove: (item) => {
-			const action = removeItem(item);
+		remove: () => {
+			const action = removeItem({ id });
 			dispatch(action);
 		},
-		updateSource: (id, source) => {
+		updateSource: (source) => {
 			const action = updateSource(id, source);
+			dispatch(action);
+		},
+		cancel: () => {
+			const action = setStatus(id, STATUS_CANCELLED);
+			dispatch(action);
+		},
+		skip: () => {
+			const action = setStatus(id, STATUS_SKIPPED);
 			dispatch(action);
 		},
 	};

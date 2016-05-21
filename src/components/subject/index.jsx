@@ -11,22 +11,30 @@ export default class Subject extends React.Component {
 			source,
 			status,
 			isFastest,
+			canSkip,
+			canCancel,
 			moveUp,
 			moveDown,
 			remove,
 			updateSource,
+			skip,
+			cancel,
 		} = this.props;
 		const fastestIndicator = isFastest ? <FastestIndicator /> : null;
+		const skipButton = canSkip ? <button onClick={ skip }>Skip test</button> : null;
+		const cancelButton = canCancel ? <button onClick={ cancel }>Cancel test</button> : null;
 		return <div>
 			<CodeMirror
 				value={ source }
-				onChange={ (source) => updateSource(id, source) }
+				onChange={ updateSource }
 				options={ editorOptions }
 			/>
 			<div className="subject-actions">
-				<button onClick={ () => moveUp(item) }>Move up</button>
-				<button onClick={ () => moveDown(item) }>Move down</button>
-				<button onClick={ () => remove(item) }>Delete</button>
+				<button onClick={ moveUp }>Move up</button>
+				<button onClick={ moveDown }>Move down</button>
+				<button onClick={ remove }>Delete</button>
+				{ skipButton }
+				{ cancelButton }
 			</div>
 			<SubjectStatus status={ status } />
 			{ fastestIndicator }
