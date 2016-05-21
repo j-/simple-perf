@@ -37,6 +37,10 @@ module.exports = {
 				],
 				test: /\.less$/,
 			},
+			{
+				loader: 'file',
+				test: /\.(eot|svg|ttf|woff2?)$/,
+			},
 		],
 	},
 	devtool: 'source-map',
