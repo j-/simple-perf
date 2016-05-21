@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import uuid from 'node-uuid';
 import reducer from './subject-list/reducer';
+import subjectReducer from './subject/reducer';
 import {
 	START_PERF_TEST,
 } from './subject-list/types';
@@ -14,8 +15,8 @@ const LOCAL_STORAGE_KEY = 'simple-perf-store';
  */
 function makeDefaultState () {
 	return [
-		{ id: uuid(), source: null },
-		{ id: uuid(), source: null },
+		subjectReducer(undefined, {}),
+		subjectReducer(undefined, {}),
 	];
 }
 
