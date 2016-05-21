@@ -2,15 +2,27 @@ import Benchmark from 'benchmark';
 import {
 	START_PERF_TEST,
 } from '../store/subject-list/types';
+import {
+	setStatus,
+} from '../store/subject/actions';
+import {
+	STATUS_SUCCESS,
+} from '../store/subject/statuses';
 
 console.log(Benchmark.platform);
+
+function sendMessage (message) {
+	global.postMessage(message);
+}
 
 function startPerfTest (state) {
 	const tests = state;
 	const suite = new Benchmark.Suite();
 
 	suite.on('cycle', ({ target }) => {
-		console.log(String(target));
+		const id = target.name;
+		const action = setStatus(id, STATUS_SUCCESS);
+		sendMessage(action);
 	});
 
 	suite.reset();

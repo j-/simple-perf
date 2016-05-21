@@ -64,6 +64,11 @@ const runner = (store) => (next) => (action) => {
 	return next(action);
 };
 
+worker.addEventListener('message', function (message) {
+	const action = message.data;
+	store.dispatch(action);
+});
+
 const middleware = applyMiddleware(runner);
 const store = createStore(reducer, preloadState, middleware);
 
