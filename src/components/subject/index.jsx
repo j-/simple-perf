@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import { ButtonGroup, Button, Alert } from 'react-bootstrap';
 import CodeMirror from 'react-codemirror';
 import editorOptions from './editor-options';
 import SubjectStatus from '../subject-status';
@@ -41,8 +41,10 @@ export default class Subject extends React.Component {
 				{ skipButton }
 				{ cancelButton }
 			</ButtonGroup>
-			<SubjectStatus status={ status } />
-			{ fastestIndicator }
+			<Alert>
+				{ fastestIndicator }
+				<SubjectStatus status={ status } />
+			</Alert>
 		</div>;
 	}
 }
