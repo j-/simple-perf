@@ -1,6 +1,7 @@
 import React from 'react';
 import CodeMirror from 'react-codemirror';
 import editorOptions from './editor-options';
+import SubjectStatus from '../subject-status';
 
 export default class Subject extends React.Component {
 	render () {
@@ -14,6 +15,7 @@ export default class Subject extends React.Component {
 		const {
 			id,
 			source,
+			status,
 		} = item;
 		return <div>
 			<span>ID: { id }</span>
@@ -27,7 +29,7 @@ export default class Subject extends React.Component {
 				<button onClick={ () => moveDown(item) }>Move down</button>
 				<button onClick={ () => remove(item) }>Delete</button>
 			</div>
-
+			<SubjectStatus status={ status } />
 		</div>;
 	}
 }

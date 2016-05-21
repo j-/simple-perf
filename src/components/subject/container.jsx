@@ -13,6 +13,7 @@ const mapStateToProps = (state) => {
 	return {
 		id: state.id,
 		source: state.source,
+		status: state.status,
 	};
 };
 
