@@ -6,3 +6,31 @@
 .subject-list-item {
 	margin-bottom: 50px;
 }
+
+/* Will be updated. Displayed in italic. */
+.subject-status-running,
+.subject-status-pending {
+	font-style: italic;
+}
+
+.subject-status-running {
+	font-weight: bold;
+}
+
+/* Draw less focus */
+.subject-status-pending {
+	color: #888;
+}
+
+/* Draw even less focus */
+.subject-status-cancelled,
+.subject-status-skipped {
+	color: #aaa;
+}
+
+.fastest {
+	font-weight: bold;
+	display: inline-block;
+	color: #080;
+	margin: 0 10px 0 0;
+}
