@@ -3,7 +3,7 @@ import {
 	ButtonToolbar,
 	ButtonGroup,
 	Button,
-	Alert,
+	Panel,
 } from 'react-bootstrap';
 import CodeMirror from 'react-codemirror';
 import editorOptions from './editor-options';
@@ -37,6 +37,7 @@ export default class Subject extends React.Component {
 				onChange={ onUpdateSource }
 				options={ editorOptions }
 			/>
+			<br />
 			<ButtonToolbar>
 				<ButtonGroup>
 					<Button onClick={ onMoveUp } disabled={ !canMoveUp }>Move up</Button>
@@ -48,10 +49,11 @@ export default class Subject extends React.Component {
 					{ cancelButton }
 				</ButtonGroup>
 			</ButtonToolbar>
-			<Alert>
+			<br />
+			<Panel>
 				{ fastestIndicator }
 				<SubjectStatus status={ status } />
-			</Alert>
+			</Panel>
 		</div>;
 	}
 }
