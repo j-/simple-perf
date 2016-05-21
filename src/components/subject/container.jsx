@@ -18,15 +18,18 @@ import {
 
 const mapStateToProps = (state = [], ownProps) => {
 	const id = ownProps.id;
-	const item = state.find((item) => {
+	const index = state.findIndex((item) => {
 		return item.id === id;
 	});
+	const item = state[index];
 	const { source, status, isFastest } = item;
 	return {
 		id,
 		source,
 		status,
 		isFastest,
+		canMoveUp: index > 0,
+		canMoveDown: index < state.length - 1,
 		canCancel: status === STATUS_RUNNING,
 		canSkip: status === STATUS_PENDING,
 	};

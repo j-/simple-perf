@@ -11,6 +11,8 @@ export default class Subject extends React.Component {
 			source,
 			status,
 			isFastest,
+			canMoveUp,
+			canMoveDown,
 			canSkip,
 			canCancel,
 			onMoveUp,
@@ -30,8 +32,8 @@ export default class Subject extends React.Component {
 				options={ editorOptions }
 			/>
 			<div className="subject-actions">
-				<button onClick={ onMoveUp }>Move up</button>
-				<button onClick={ onMoveDown }>Move down</button>
+				<button onClick={ onMoveUp } disabled={ !canMoveUp }>Move up</button>
+				<button onClick={ onMoveDown } disabled={ !canMoveDown }>Move down</button>
 				<button onClick={ onRemove }>Delete</button>
 				{ skipButton }
 				{ cancelButton }
