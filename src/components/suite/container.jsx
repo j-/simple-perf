@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addItem: () => {
-			const action = createNewItem(item);
+			const action = createNewItem();
 			dispatch(action);
 		},
 	};
