@@ -79,6 +79,7 @@ function startPerfTest () {
 				const id = item.id;
 				const stats = {
 					hz: target.hz,
+					rme: target.stats.rme,
 					samples: target.stats.sample.length,
 				};
 				const action = updateStats(id, stats);
