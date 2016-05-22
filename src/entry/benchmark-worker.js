@@ -36,6 +36,16 @@ function getBenchmark (id) {
 	return null;
 }
 
+function sendStatsUpdate (id, bench) {
+	const stats = {
+		hz: bench.hz,
+		rme: bench.stats.rme,
+		samples: bench.stats.sample.length,
+	};
+	const action = updateStats(id, stats);
+	dispatch(action);
+}
+
 function startPerfTest () {
 	currentSuite = new Benchmark.Suite();
 	const tests = currentState;
@@ -58,6 +68,7 @@ function startPerfTest () {
 				if (didError || didSkip || target.aborted) {
 					return;
 				}
+				sendStatsUpdate(item.id, target);
 				const action = setStatus(item.id, STATUS_SUCCESS);
 				dispatch(action);
 			},
@@ -76,14 +87,7 @@ function startPerfTest () {
 				dispatch(action);
 			},
 			onCycle: ({ target }) => {
-				const id = item.id;
-				const stats = {
-					hz: target.hz,
-					rme: target.stats.rme,
-					samples: target.stats.sample.length,
-				};
-				const action = updateStats(id, stats);
-				dispatch(action);
+				sendStatsUpdate(item.id, target);
 			},
 		});
 	});
