@@ -20,6 +20,10 @@ module.exports = {
 					path.resolve(__dirname, 'src'),
 				],
 				test: /\.jsx?$/,
+				query: {
+					plugins: ['transform-runtime'],
+					presets: ['es2015', 'stage-2', 'react'],
+				},
 			},
 			{
 				loader: 'json',
