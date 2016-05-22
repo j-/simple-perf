@@ -41,6 +41,7 @@ function sendStatsUpdate (id, bench) {
 		hz: bench.hz,
 		rme: bench.stats.rme,
 		samples: bench.stats.sample.length,
+		elapsed: (bench.times.elapsed * 1000) || (Date.now() - bench.times.timeStamp),
 	};
 	const action = updateStats(id, stats);
 	dispatch(action);
