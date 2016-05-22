@@ -46,6 +46,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "node-uuid": "^1.4.7",
+    "number-formatter": "^1.2.0",
     "promise-worker": "^1.0.0",
     "react": "^15.0.2",
     "react-bootstrap": "^0.29.4",

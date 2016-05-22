@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import format from 'number-formatter';
 
 export default class Stats extends Component {
 	render () {
@@ -6,7 +7,7 @@ export default class Stats extends Component {
 			hz,
 		} = this.props;
 		return <div class="test-stats">
-			{ hz } ops/s
+			{ format('#,##0.00', hz) } ops/s
 		</div>
 	}
 }
