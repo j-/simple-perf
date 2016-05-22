@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import uuid from 'node-uuid';
 import reducer from './state/subject-list/reducer';
 import subjectReducer from './state/subject/reducer';
@@ -91,8 +91,14 @@ worker.addEventListener('message', function (message) {
 	store.dispatch(action);
 });
 
+const ident = (x) => x;
+const devtools = window.devToolsExtension ? window.devToolsExtension() : ident;
+
 const middleware = applyMiddleware(runner);
-const store = createStore(reducer, preloadState, middleware);
+const store = createStore(reducer, preloadState, compose(
+	middleware,
+	devtools
+));
 
 store.subscribe(() => {
 	const state = store.getState();
