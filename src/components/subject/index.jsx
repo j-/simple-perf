@@ -9,6 +9,7 @@ import CodeMirror from 'react-codemirror';
 import editorOptions from './editor-options';
 import SubjectStatus from '../subject-status';
 import FastestIndicator from '../fastest-indicator';
+import TestStats from '../test-stats';
 
 export default class Subject extends React.Component {
 	render () {
@@ -17,6 +18,7 @@ export default class Subject extends React.Component {
 			source,
 			status,
 			isFastest,
+			stats,
 			canMoveUp,
 			canMoveDown,
 			canSkip,
@@ -31,6 +33,7 @@ export default class Subject extends React.Component {
 		const fastestIndicator = isFastest ? <FastestIndicator /> : null;
 		const skipButton = canSkip ? <Button onClick={ onSkip }>Skip test</Button> : null;
 		const cancelButton = canCancel ? <Button onClick={ onCancel }>Cancel test</Button> : null;
+		const testStats = stats !== null ? <TestStats { ...stats } /> : null;
 		return <div className="subject">
 			<CodeMirror
 				value={ source }
@@ -53,6 +56,7 @@ export default class Subject extends React.Component {
 			<Panel>
 				{ fastestIndicator }
 				<SubjectStatus status={ status } />
+				{ testStats }
 			</Panel>
 		</div>;
 	}

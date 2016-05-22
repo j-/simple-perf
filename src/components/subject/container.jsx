@@ -20,13 +20,14 @@ const mapStateToProps = (state = [], ownProps) => {
 	const id = ownProps.id;
 	const index = state.findIndex((item) => item.id === id);
 	const item = state[index];
-	const { source, status, isFastest } = item;
+	const { source, status, isFastest, stats } = item;
 	return {
 		id,
 		index,
 		source,
 		status,
 		isFastest,
+		stats,
 		canMoveUp: index > 0,
 		canMoveDown: index < state.length - 1,
 		canCancel: status === STATUS_RUNNING,
