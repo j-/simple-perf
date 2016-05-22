@@ -12,6 +12,7 @@ import {
 	UPDATE_SOURCE,
 	MARK_FASTEST,
 	RESET_STATE,
+	UPDATE_STATS,
 } from '../subject/types';
 import itemReducer from '../subject/reducer';
 
@@ -100,6 +101,7 @@ export default function (state = [], action = {}) {
 		case SET_STATUS:
 		case UPDATE_SOURCE:
 		case MARK_FASTEST:
+		case UPDATE_STATS:
 			return state.map((item) => {
 				if (item.id !== action.id) {
 					return item;

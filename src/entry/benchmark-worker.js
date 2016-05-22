@@ -5,6 +5,7 @@ import {
 import {
 	setStatus,
 	markFastest,
+	updateStats,
 } from '../state/subject/actions';
 import {
 	STATUS_CANCELLED,
@@ -72,6 +73,14 @@ function startPerfTest () {
 					return;
 				}
 				const action = setStatus(item.id, STATUS_RUNNING);
+				dispatch(action);
+			},
+			onCycle: ({ target }) => {
+				const id = item.id;
+				const stats = {
+					hz: target.hz,
+				};
+				const action = updateStats(id, stats);
 				dispatch(action);
 			},
 		});

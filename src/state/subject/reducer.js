@@ -4,6 +4,7 @@ import {
 	UPDATE_SOURCE,
 	MARK_FASTEST,
 	RESET_STATE,
+	UPDATE_STATS,
 } from './types';
 import {
 	START_PERF_TEST,
@@ -19,6 +20,7 @@ function buildSubject () {
 		source: '',
 		status: STATUS_DEFAULT,
 		isFastest: false,
+		stats: null,
 	};
 }
 
@@ -61,6 +63,11 @@ export default function (state = buildSubject(), action = {}) {
 			return {
 				...state,
 				isFastest: true,
+			};
+		case UPDATE_STATS:
+			return {
+				...state,
+				stats: action.stats,
 			};
 		default:
 			return state;
