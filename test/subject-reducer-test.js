@@ -38,12 +38,16 @@ test('Can set source if ID matches', (t) => {
 	const subject = {
 		id: 'foobar',
 		source: 'old',
+		status: null,
+		isFastest: true,
 	};
 	const expected = {
 		id: 'foobar',
 		source: 'new',
 		// Status is changed when source updated
 		status: 'STATUS_DEFAULT',
+		// Not sure any longer if this is fastest
+		isFastest: false,
 	};
 	const action = updateSource('foobar', 'new');
 	const actual = reducer(subject, action);
