@@ -7,13 +7,6 @@ import {
 	MOVE_ITEM_DOWN,
 	START_PERF_TEST,
 } from './types';
-import {
-	SET_STATUS,
-	UPDATE_SOURCE,
-	MARK_FASTEST,
-	RESET_STATE,
-	UPDATE_STATS,
-} from '../subject/types';
 import itemReducer from '../subject/reducer';
 
 const UP = -1;
@@ -98,22 +91,9 @@ export default function (state = [], action = {}) {
 			list = [...state];
 			moveDown(list, findIndex(list, item));
 			return list;
-		case SET_STATUS:
-		case UPDATE_SOURCE:
-		case MARK_FASTEST:
-		case UPDATE_STATS:
-			return state.map((item) => {
-				if (item.id !== action.id) {
-					return item;
-				}
-				return itemReducer(item, action);
-			});
-		case START_PERF_TEST:
-		case RESET_STATE:
-			return state.map((item) => {
-				return itemReducer(item, action);
-			});
 		default:
-			return state;
+			return state.map((item) => {
+				return itemReducer(item, action);
+			});
 	}
 }
