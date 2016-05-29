@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import uuid from 'node-uuid';
-import reducer from './state/subject-list/reducer';
+import reducer from './state/suite/reducer';
 import subjectReducer from './state/subject/reducer';
 import {
 	START_PERF_TEST,
@@ -20,10 +20,12 @@ const LOCAL_STORAGE_KEY = 'simple-perf-store';
  * @return {Subject[]} List of test subjects
  */
 function makeDefaultState () {
-	return [
-		subjectReducer(undefined, {}),
-		subjectReducer(undefined, {}),
-	];
+	return {
+		subjects: [
+			subjectReducer(undefined, {}),
+			subjectReducer(undefined, {}),
+		],
+	};
 }
 
 /**
@@ -52,7 +54,7 @@ if (localStorageState) {
 	// Local storage state exists
 	preloadState = localStorageState;
 }
-if (!localStorageState || !localStorageState.length) {
+if (!localStorageState || !localStorageState.subjects.length) {
 	// Create new state tree
 	preloadState = makeDefaultState();
 	// Persist this new state tree
@@ -77,7 +79,7 @@ const runner = (store) => (next) => (action) => {
 		const result = next(action);
 		worker.postMessage({
 			type: START_PERF_TEST,
-			state: store.getState(),
+			state: store.getState().subjects,
 		});
 		return result;
 	} else if (action.type === SET_STATUS) {

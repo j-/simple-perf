@@ -18,8 +18,9 @@ import {
 
 const mapStateToProps = (state = [], ownProps) => {
 	const id = ownProps.id;
-	const index = state.findIndex((item) => item.id === id);
-	const item = state[index];
+	const subjects = state.subjects;
+	const index = subjects.findIndex((item) => item.id === id);
+	const item = subjects[index];
 	const { source, status, isFastest, stats } = item;
 	return {
 		id,
@@ -29,7 +30,7 @@ const mapStateToProps = (state = [], ownProps) => {
 		isFastest,
 		stats,
 		canMoveUp: index > 0,
-		canMoveDown: index < state.length - 1,
+		canMoveDown: index < subjects.length - 1,
 		canCancel: status === STATUS_RUNNING,
 		canSkip: status === STATUS_PENDING,
 	};

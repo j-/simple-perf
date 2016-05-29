@@ -8,7 +8,7 @@ import {
 
 const mapStateToProps = (state) => {
 	return {
-		list: state,
+		list: state.subjects,
 	};
 };
 
