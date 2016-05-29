@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
 	ButtonToolbar,
 	ButtonGroup,
@@ -12,7 +12,7 @@ import SubjectStatus from '../subject-status';
 import FastestIndicator from '../fastest-indicator';
 import TestStats from '../test-stats';
 
-export default class Subject extends React.Component {
+export default class Subject extends Component {
 	render () {
 		const {
 			id,

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Panel, ButtonToolbar, Button } from 'react-bootstrap';
 import SubjectContainer from '../subject/container';
 import SubjectList from '../subject-list';
 
-export default class Suite extends React.Component {
+export default class Suite extends Component {
 	render () {
 		const {
 			list,

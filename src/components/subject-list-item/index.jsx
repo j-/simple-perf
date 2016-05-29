@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class SubjectListItem extends React.Component {
+export default class SubjectListItem extends Component {
 	render () {
 		const { item, children } = this.props;
 		const { id } = item;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
 	STATUS_DEFAULT,
 	STATUS_PENDING,
@@ -9,7 +9,7 @@ import {
 	STATUS_SUCCESS,
 } from '../../state/subject/statuses';
 
-export default class SubjectStatus extends React.Component {
+export default class SubjectStatus extends Component {
 	getDisplayText (status) {
 		// Horizontal ellipsis (...)
 		// Indicates that the status will change

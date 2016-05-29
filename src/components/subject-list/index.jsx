@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SubjectListItem from '../subject-list-item';
 
-export default class SubjectList extends React.Component {
+export default class SubjectList extends Component {
 	render () {
 		const { list, Item } = this.props;
 		const items = list.map((item) => {
